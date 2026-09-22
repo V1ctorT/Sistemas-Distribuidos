@@ -23,18 +23,16 @@ Datos Salida: mensaje
 */
 
 int main(){
-    pid_t pid;
-    char *message;
-
     printf("Ejercicio 4............\n");
-    pid = fork();
+
+    pid_t pid = fork();
     switch(pid)
     {
         case -1:
             perror("Fork no se pudo inicializar...\n");
         break;
         case 0: //Child
-            printf("\tPrimer Hijo, creando 3 procesos\n");
+            printf("\tPrimer Hijo (%d), creando 3 procesos\n",getpid());
             for(int n = 0; n < 3; n++)
             {
                 pid = fork();
@@ -47,19 +45,24 @@ int main(){
                         pid = fork();
                         if(pid == 0)
                         {
-                            printf("\t\t\tHijos terminales... PPID:%d\n",getppid());
+                            printf("\t\t\tHijo terminal... PID delPadre:%d\n",getppid());
+                            sleep(1);
+                            sleep(1);
                             exit(0);
                         }
                     }
                     exit(0);
+                }else if(pid > 0)
+                {
+                    printf("\tProceso padre, PID del hijo: %d\n",pid);
+                }else
+                {
+                    perror("Fork no se pudo inicializar...\n");
                 }
             }
         break;
         default: //Padre
-        //    printf("PID parent: %d\n",pid);
+            printf("Primer Padre, PID del Hijo: %d\n",pid);
         break;
     }
-    sleep(1);
-    sleep(1);
-    sleep(1);
 }
