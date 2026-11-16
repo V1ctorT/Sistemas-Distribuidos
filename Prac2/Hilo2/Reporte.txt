@@ -1,0 +1,6 @@
+-------------------------------------------------------------------------
+Reporte de las tareas de los Hilos:
+Hilo 1: Conteo de concurrencia de la palabra 'queso': 21 veces
+Hilo 2: Archivos copiados: 15
+Hilo 3: Creado archivo reporte en 'Reporte.txt'
+-------------------------------------------------------------------------
