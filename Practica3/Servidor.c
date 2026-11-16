@@ -20,6 +20,8 @@ int main()
     desc_socket = socket(AF_INET,SOCK_DGRAM,0);
     //mem
     bzero(&direc,sizeof(direc));
+    
+    //Propiedades de la direccion
     direc.sin_family = AF_INET;
     direc.sin_port = htons(PUERTO);
     direc.sin_addr.s_addr = INADDR_ANY;
