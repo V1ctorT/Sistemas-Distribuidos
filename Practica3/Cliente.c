@@ -34,6 +34,7 @@ int main()
 
     // Inicio de puerto y direccion de servidor
     memset(&dest, 0, sizeof(dest));
+    //bzero(&dest, sizeof());
 
     dest.sin_family = AF_INET;
     dest.sin_port = htons(PUERTO);
