@@ -20,7 +20,9 @@ int main(int argc, char *argv[])
     int desc_socket;
     socklen_t tam_estruc;
     struct sockaddr_in dest;
+    //Reservacion de memoria para el mensaje recibido
     char buffer[TAM_MAX];
+    //Mensaje que vamos a enviar
     char *men = argv[1];
 
     // Abre socket tipo datagrama (UDP)

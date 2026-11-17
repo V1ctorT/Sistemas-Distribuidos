@@ -110,6 +110,8 @@ int main()
     bind(desc_socket,(struct sockaddr*)&direc, sizeof(direc));
     tam_dest = sizeof(dest);
 
+    while (1)
+    {
     //Esperar mensaje del cliente--------------------------------------------------------
     recvfrom(desc_socket, men, strlen(men)+1,0,(struct sockaddr *)&dest, &tam_dest);
     printf("Conectando... Calculando Operacion -> %s\n",men);
@@ -124,6 +126,9 @@ int main()
 
     //Responder al cliente---------------------------------------------------------------
     sendto(desc_socket, buffer, strlen(buffer)+1,0,(struct sockaddr *)&dest, sizeof(dest));
+    }
+    
+
     close(desc_socket);
     return 0;
 }
