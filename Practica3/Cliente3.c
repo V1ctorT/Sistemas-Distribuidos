@@ -88,6 +88,12 @@ int main(int argc, char *argv[])
     buffer[byts_recibidos] = '\0';
     printf("Respuesta del servidor: %s\n", buffer);
 
+    if(strcmp(buffer,"noEncontrado:Terminar") == 0){
+        perror("Error No se encontro el archivo...");
+        close(desc_socket);
+        exit(EXIT_FAILURE);
+    }
+
     char validacion[1024];
     printf("Comprobando permisos: \n");
     int permiso = access("./Cliente_Files", W_OK);
@@ -135,7 +141,7 @@ int main(int argc, char *argv[])
         }
     fwrite(bloque, 1, bytes, archivo);
     }
-    
+
     fclose(archivo);
     
 
