@@ -91,20 +91,29 @@ int main()
 
     char rutaEncontrada[1024];
     printf("Buscando Archivo: %s\n",men);
-
+    int enc = 0;
     if(buscarArchivo("Server3_Files", men, rutaEncontrada, sizeof(rutaEncontrada)))
     { 
         printf("Archivo encontrado y disponible (%s), validando permisos...\n",men);
         printf("Ruta: %s\n", rutaEncontrada);
         strcpy(men, "Encontrado:Validar");
+        enc = 1;
     }
     else { 
-        printf("Archivo no encontrado"); 
+        printf("Archivo no encontrado\n"); 
         strcpy(men, "noEncontrado:Terminar");
     }
 
+
     //Responder al cliente que si esta el archivo, esperando validacion de escritura
     sendto(desc_socket, men, strlen(men)+1,0,(struct sockaddr *)&dest, sizeof(dest));
+
+    if(enc == 0)
+    {
+            perror("Verifique el nombre del archivo...\n");
+            close(desc_socket);
+            exit(EXIT_FAILURE);
+    }
 
     //Esperar la validacion del archivo del cliente--------------------------------------
     bytes = recvfrom(desc_socket, men, TAM_MAX+1,0,(struct sockaddr *)&dest, &tam_dest);
