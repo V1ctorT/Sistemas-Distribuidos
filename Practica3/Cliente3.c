@@ -13,7 +13,7 @@
 // Local host, la computadora local
 // #define DIR_SERV "192.168.10.1"
 
-#define DIR_SERV "192.168.100.51"
+#define DIR_SERV "127.0.0.1"
 
 #define TAM_MAX 1024
 

@@ -11,7 +11,7 @@
 #define PUERTO 3000
 
 // Local host, la computadora local
-#define DIR_SERV "192.168.10.1"
+#define DIR_SERV "127.0.0.1"
 
 #define TAM_MAX 1024
 
@@ -72,11 +72,9 @@ int main()
     }
 
     buffer[byts_recibidos] = '\0';
-
     printf("Respuesta del servidor: %s\n", buffer);
 
     // Cierra socket
     close(desc_socket);
-
     return 0;
 }
